@@ -1,16 +1,18 @@
+import examples.StdDraw;
+
 public class Planet {
     // Its current x position
-    double xxPos;
+    public double xxPos;
     // Its current y position
-    double yyPos;
+    public double yyPos;
     // Its current velocity in the x direction
-    double xxVel;
+    public double xxVel;
     // Its current velocity in the y direction
-    double yyVel;
+    public double yyVel;
     // Its mass
-    double mass;
+    public double mass;
     // The name of the file that corresponds to the image that depicts the planet
-    String imgFileName;
+    public String imgFileName;
     // gravitational constant
     private static final double G = 6.67 * Math.pow(10, -11);
 
@@ -127,5 +129,9 @@ public class Planet {
         this.yyVel += ay * time;
         this.xxPos += this.xxVel * time;
         this.yyPos += this.yyVel * time;
+    }
+
+    public void draw() {
+        StdDraw.picture(this.xxPos, this.yyPos, "images/" + this.imgFileName);
     }
 }

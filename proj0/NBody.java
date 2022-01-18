@@ -50,19 +50,19 @@ public class NBody {
         double time = 0;
         double[] xForces = new double[planets.length];
         double[] yForces = new double[planets.length];
-        while (time < T) {
+        while (Math.abs(T - time) < 1e-6) {
             StdDraw.enableDoubleBuffering();
             for (int i = 0; i < planets.length; ++i) {
                 xForces[i] = planets[i].calcNetForceExertedByX(planets);
                 yForces[i] = planets[i].calcNetForceExertedByY(planets);
                 StdDraw.clear();
                 StdDraw.picture(0, 0, "images/starfield.jpg");
-                StdDraw.picture(planets[i].xxPos, planets[i].yyPos, "images/" + planets[i].imgFileName);
+                planets[i].draw();
                 StdDraw.show();
                 StdDraw.pause(10);
             }
             for (int i = 0; i < planets.length; ++i) {
-                planets[i].update(time,xForces[i],yForces[i]);
+                planets[i].update(time, xForces[i], yForces[i]);
             }
             time += dt;
         }
