@@ -47,11 +47,11 @@ public class NBody {
         double radius = NBody.readRadius(fileName);
 
         StdDraw.setScale(-radius, radius);
-        double time = 0;
+        double time = 0.0;
         double[] xForces = new double[planets.length];
         double[] yForces = new double[planets.length];
-        while (Math.abs(T - time) < 1e-6) {
-            StdDraw.enableDoubleBuffering();
+        StdDraw.enableDoubleBuffering();
+        while (time < T) {
             for (int i = 0; i < planets.length; ++i) {
                 xForces[i] = planets[i].calcNetForceExertedByX(planets);
                 yForces[i] = planets[i].calcNetForceExertedByY(planets);
@@ -62,7 +62,7 @@ public class NBody {
                 StdDraw.pause(10);
             }
             for (int i = 0; i < planets.length; ++i) {
-                planets[i].update(time, xForces[i], yForces[i]);
+                planets[i].update(dt, xForces[i], yForces[i]);
             }
             time += dt;
         }
