@@ -1,5 +1,3 @@
-import examples.StdDraw;
-
 public class NBody {
 
     /**

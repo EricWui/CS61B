@@ -1,4 +1,4 @@
-import examples.StdDraw;
+
 
 public class Planet {
     // Its current x position
