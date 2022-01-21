@@ -1,5 +1,3 @@
-package IntList;
-
 import java.util.Formatter;
 
 /**
@@ -13,11 +11,11 @@ public class IntList {
     /**
      * First element of list.
      */
-    public int first;
+    int first;
     /**
      * Remaining elements of list.
      */
-    public IntList rest;
+    IntList rest;
 
     /**
      * A List with first FIRST0 and rest REST0.
@@ -140,19 +138,6 @@ public class IntList {
         return A;
     }
 
-
-    /**
-     * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
-     * will be introduced later in the course or feature some form of advanced
-     * trickery which we implemented to help make your life a little easier for
-     * the lab.
-     */
-
-    @Override
-    public int hashCode() {
-        return first;
-    }
-
     /**
      * Returns a new IntList containing the ints in ARGS. You are not
      * expected to read or understand this method.
@@ -171,6 +156,18 @@ public class IntList {
             p.rest = new IntList(args[k], null);
         }
         return result;
+    }
+
+    /**
+     * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
+     * will be introduced later in the course or feature some form of advanced
+     * trickery which we implemented to help make your life a little easier for
+     * the lab.
+     */
+
+    @Override
+    public int hashCode() {
+        return first;
     }
 
     /**
