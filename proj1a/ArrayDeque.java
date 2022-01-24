@@ -63,7 +63,9 @@ public class ArrayDeque<T> {
         if (size() == 0) {
             return null;
         }
-        return elements[++startIndex];
+        T item = elements[++startIndex];
+        resize();
+        return item;
     }
 
     /**
@@ -75,7 +77,9 @@ public class ArrayDeque<T> {
         if (size() == 0) {
             return null;
         }
-        return elements[--endIndex];
+        T item = elements[--endIndex];
+        resize();
+        return item;
     }
 
     /**
@@ -107,7 +111,7 @@ public class ArrayDeque<T> {
             cpElements(newElements);
             elements = newElements;
         }
-        if (factor > 0.75) {
+        if (factor >= 0.85) {
             //make size of elements large
             T[] newElements = (T[]) new Object[length * 2];
             cpElements(newElements);
