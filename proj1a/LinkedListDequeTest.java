@@ -101,6 +101,5 @@ public class LinkedListDequeTest {
             deque.printDeque();
             deque.removeLast();
         }
-
     }
-} 
+}

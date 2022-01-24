@@ -5,8 +5,8 @@ public class ArrayDeque<T> {
 
     public ArrayDeque() {
         elements = (T[]) new Object[8];
-        startIndex = 0;
-        endIndex = elements.length;
+        startIndex = 3;
+        endIndex = 4;
     }
 
     /**
@@ -15,7 +15,7 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         resize();
-        elements[startIndex++] = item;
+        elements[startIndex--] = item;
     }
 
     /**
@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
 
     public void addLast(T item) {
         resize();
-        elements[--endIndex] = item;
+        elements[endIndex++] = item;
     }
 
     /**
@@ -32,7 +32,7 @@ public class ArrayDeque<T> {
      */
 
     public boolean isEmpty() {
-        return endIndex - startIndex == elements.length;
+        return (startIndex + 1) == endIndex;
     }
 
     /**
@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
      */
 
     public int size() {
-        return startIndex - 0 + elements.length - endIndex;
+        return endIndex - startIndex - 1;
     }
 
     /**
@@ -48,8 +48,8 @@ public class ArrayDeque<T> {
      */
 
     public void printDeque() {
-        for (int i = 0; i < size(); i++) {
-            System.out.print(get(i) + " ");
+        for (int i = startIndex + 1; i < endIndex; i++) {
+            System.out.print(elements[i] + " ");
         }
         System.out.println();
     }
@@ -60,12 +60,7 @@ public class ArrayDeque<T> {
      */
 
     public T removeFirst() {
-        if (size() == 0) {
-            return null;
-        }
-        T item = elements[--startIndex];
-        resize();
-        return item;
+        return elements[++startIndex];
     }
 
     /**
@@ -74,12 +69,7 @@ public class ArrayDeque<T> {
      */
 
     public T removeLast() {
-        if (size() == 0) {
-            return null;
-        }
-        T item = elements[endIndex++];
-        resize();
-        return item;
+        return elements[--endIndex];
     }
 
     /**
@@ -88,14 +78,11 @@ public class ArrayDeque<T> {
      */
 
     public T get(int index) {
-        if (index >= size()) {
+        int size = size();
+        if (index < 0 || index >= size) {
             return null;
         }
-        int addFirstLength = startIndex;
-        if (index < addFirstLength) {
-            return elements[addFirstLength - index - 1];
-        }
-        return elements[elements.length - (index - addFirstLength) - 1];
+        return elements[startIndex + index + 1];
     }
 
     /**
@@ -107,6 +94,7 @@ public class ArrayDeque<T> {
         int length = elements.length;
         int size = size();
         double factor = size / (length + 0.0);
+        int newLength;
         if (factor < 0.25 && length > 16) {
             //make size of elements small
             T[] newElements = (T[]) new Object[length / 2];
@@ -119,6 +107,12 @@ public class ArrayDeque<T> {
             cpElements(newElements);
             elements = newElements;
         }
+        if (startIndex == 0 || endIndex == elements.length - 1) {
+            //when only addFirst or addLast
+            T[] newElements = (T[]) new Object[length];
+            cpElements(newElements);
+            elements = newElements;
+        }
     }
 
     /**
@@ -126,13 +120,13 @@ public class ArrayDeque<T> {
      */
 
     private void cpElements(T[] newElements) {
-        for (int i = 0; i < startIndex; ++i) {
-            newElements[i] = elements[i];
+        int length = newElements.length;
+        int index = startIndex + 1;
+        int size = size();
+        startIndex = (length - size()) / 2 - 1;
+        for (int i = 0; i < size; ++i) {
+            newElements[startIndex + i + 1] = elements[index++];
         }
-        int newIndex = newElements.length;
-        for (int i = elements.length - 1; i >= endIndex; --i) {
-            newElements[--newIndex] = elements[i];
-        }
-        endIndex = newIndex;
+        endIndex = startIndex + size + 1;
     }
 }
