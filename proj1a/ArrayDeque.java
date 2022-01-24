@@ -1,4 +1,3 @@
-//Circular Queue
 public class ArrayDeque<T> {
     private T[] elements;
     private int startIndex;
@@ -102,16 +101,13 @@ public class ArrayDeque<T> {
     /**
      * when factor is very low or very high,
      * build a new array and copy the elements to the new array.
-     * */
+     */
 
     private void resize() {
-        int size = size();
         int length = elements.length;
-        if (length < 16) {
-            return;
-        }
+        int size = size();
         double factor = size / (length + 0.0);
-        if (factor < 0.25) {
+        if (factor < 0.25 && length > 16) {
             //make size of elements small
             T[] newElements = (T[]) new Object[length / 2];
             cpElements(newElements);
@@ -127,15 +123,16 @@ public class ArrayDeque<T> {
 
     /**
      * build a new array and copy the elements to the new array.
-     * */
+     */
 
     private void cpElements(T[] newElements) {
         for (int i = 0; i < startIndex; ++i) {
             newElements[i] = elements[i];
         }
-        for (int i = endIndex; i < elements.length; ++i) {
-            newElements[i] = elements[i];
+        int newIndex = newElements.length;
+        for (int i = elements.length - 1; i >= endIndex; --i) {
+            newElements[--newIndex] = elements[i];
         }
+        endIndex = newIndex;
     }
-
 }

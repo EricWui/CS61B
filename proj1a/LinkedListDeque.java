@@ -126,7 +126,7 @@ public class LinkedListDeque<T> {
             return null;
         }
         Node ptr = sentinel.next;
-        while (index-- >= 0) {
+        while (index-- > 0) {
             ptr = ptr.next;
         }
         return ptr.item;
@@ -143,8 +143,9 @@ public class LinkedListDeque<T> {
      * Helper method of getRecursive.
      */
     private T getRecursiveHelper(Node ptr, int index) {
-        if (index < 0)
+        if (index < 0) {
             return null;
+        }
         if (index == 0) {
             return ptr.item;
         }
@@ -153,11 +154,11 @@ public class LinkedListDeque<T> {
 
 
     private class Node {
-        public T item;
-        public Node prev;
-        public Node next;
+        T item;
+        Node prev;
+        Node next;
 
-        public Node(T item, Node prev, Node next) {
+        Node(T item, Node prev, Node next) {
             this.item = item;
             this.prev = prev;
             this.next = next;
