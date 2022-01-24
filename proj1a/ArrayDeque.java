@@ -60,6 +60,9 @@ public class ArrayDeque<T> {
      */
 
     public T removeFirst() {
+        if (size() == 0) {
+            return null;
+        }
         return elements[++startIndex];
     }
 
@@ -69,6 +72,9 @@ public class ArrayDeque<T> {
      */
 
     public T removeLast() {
+        if (size() == 0) {
+            return null;
+        }
         return elements[--endIndex];
     }
 
@@ -107,7 +113,7 @@ public class ArrayDeque<T> {
             cpElements(newElements);
             elements = newElements;
         }
-        if (startIndex == 0 || endIndex == elements.length - 1) {
+        if (startIndex <= 0 || endIndex >= elements.length - 1) {
             //when only addFirst or addLast
             T[] newElements = (T[]) new Object[length];
             cpElements(newElements);

@@ -38,30 +38,31 @@ public class LinkedListDequeTest {
      */
     public static void addIsEmptySizeTest() {
         System.out.println("Running add/isEmpty/Size test.");
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
-		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
+        System.out.println(
+                "Make sure to uncomment the lines below (and delete this print statement).");
+        /*
+        LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
-		boolean passed = checkEmpty(true, lld1.isEmpty());
+        boolean passed = checkEmpty(true, lld1.isEmpty());
 
-		lld1.addFirst("front");
-		
-		// The && operator is the same as "and" in Python.
-		// It's a binary operator that returns true if both arguments true, and false otherwise.
-		passed = checkSize(1, lld1.size()) && passed;
-		passed = checkEmpty(false, lld1.isEmpty()) && passed;
+        lld1.addFirst("front");
 
-		lld1.addLast("middle");
-		passed = checkSize(2, lld1.size()) && passed;
+        // The && operator is the same as "and" in Python.
+        // It's a binary operator that returns true if both arguments true, and false otherwise.
+        passed = checkSize(1, lld1.size()) && passed;
+        passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
-		lld1.addLast("back");
-		passed = checkSize(3, lld1.size()) && passed;
+        lld1.addLast("middle");
+        passed = checkSize(2, lld1.size()) && passed;
 
-		System.out.println("Printing out deque: ");
-		lld1.printDeque();
+        lld1.addLast("back");
+        passed = checkSize(3, lld1.size()) && passed;
 
-		printTestStatus(passed);
-		*/
+        System.out.println("Printing out deque: ");
+        lld1.printDeque();
+
+        printTestStatus(passed);
+        */
     }
 
     /**
@@ -71,22 +72,23 @@ public class LinkedListDequeTest {
 
         System.out.println("Running add/remove test.");
 
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
-		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
-		// should be empty 
-		boolean passed = checkEmpty(true, lld1.isEmpty());
+        System.out.println(
+                "Make sure to uncomment the lines below (and delete this print statement).");
+        /*
+            LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+            // should be empty
+            boolean passed = checkEmpty(true, lld1.isEmpty());
 
-		lld1.addFirst(10);
-		// should not be empty 
-		passed = checkEmpty(false, lld1.isEmpty()) && passed;
+            lld1.addFirst(10);
+            // should not be empty
+            passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
-		lld1.removeFirst();
-		// should be empty 
-		passed = checkEmpty(true, lld1.isEmpty()) && passed;
+            lld1.removeFirst();
+            // should be empty
+            passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
-		printTestStatus(passed);
-		*/
+            printTestStatus(passed);
+                        */
     }
 
     public static void main(String[] args) {
@@ -95,7 +97,7 @@ public class LinkedListDequeTest {
 //        addRemoveTest();
         ArrayDeque<Integer> deque = new ArrayDeque<>();
         for (int i = 0; i < 100; ++i) {
-            deque.addLast(i);
+            deque.addFirst(i);
         }
         for (int i = 0; i < 100; ++i) {
             deque.printDeque();
