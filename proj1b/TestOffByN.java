@@ -5,9 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 public class TestOffByN {
 
+    static OffByN offBy5 = new OffByN(5);
+
     @Test
     public void testEqualChars() {
-        OffByN offBy5 = new OffByN(5);
+
         assertTrue(offBy5.equalChars('a', 'f'));
         assertTrue(offBy5.equalChars('F', 'A'));
         assertFalse(offBy5.equalChars('f', 'h'));
